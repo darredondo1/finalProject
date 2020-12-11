@@ -123,7 +123,7 @@ int main(int argc, char* argv[])
             }
             else
                 clearMemoryGranted=1;
-                MPI_Send(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted
+                MPI_Isend(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted
 
         if (incomingRequest)
         {
@@ -377,7 +377,7 @@ int main(int argc, char* argv[])
         if (moveSelf)
         {
             move = 0;
-            if (onSubstrate==1)
+            if (onSubstrate)
             {
                 cleave = 1;
                 walkers[substrate] += 1;
@@ -393,7 +393,7 @@ int main(int argc, char* argv[])
             walkers[walker] += move; //move right
             if (walker > 0) // right neigbor exists
                 walkers[rightNeighbor] -= move;
-            if (onSubstrate==0)
+            if (!onSubstrate)
             {
                 cleave = 0;
                 walkers[substrate] -= 1; //distToSubstrate
@@ -425,7 +425,7 @@ int main(int argc, char* argv[])
                 walkers[rightNeighbor] -= move;
             else //walker is rightmost
                 distToEnd -=move
-            if (onSubstrate==0)
+            if (!onSubstrate)
             {
                 cleave = 0;
                 walkers[substrate] -= 1; //distToSubstrate
@@ -442,7 +442,7 @@ int main(int argc, char* argv[])
         {
             numWalkers-=1;
             distToEnd = distToLeft+1;
-            for (i=0;i<(numWalkers-1);i++) // shift all walker indexes to the left (since walker 0 is rightmost)
+            for (int i=0;i<(numWalkers-1);i++) // shift all walker indexes to the left (since walker 0 is rightmost)
             {
                 walkers[i]=walkers[i+2];
                 walkers[i+1]=walkers[i+3];
@@ -499,7 +499,7 @@ int main(int argc, char* argv[])
                 if (time > clearMemoryTime)
                 {
                     clearMemoryGranted=1;
-                    MPI_Send(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted)
+                    MPI_Isend(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted)
                     clearMemoryMode=0;
                 }
             }
