@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "mtwist-1.1/mtwist.h"
+#include <sys/timeb.h>
 #include <unistd.h>
 #include <assert.h>
 
