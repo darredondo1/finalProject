@@ -89,10 +89,12 @@ int main(int argc, char* argv[])
     double clearMemoryTime;
     int clearMemoryGranted;
     int message=0;
+    double start=0;
+    double runTime=0;
 
     //START TIMING
     MPI_Barrier(MPI_COMM_WORLD);
-//    start = MPI_Wtime();
+    start = MPI_Wtime();
     
     while (time <= maxTime)
     {
@@ -507,6 +509,8 @@ int main(int argc, char* argv[])
             }
         }
     }
+    runTime = MPI_Wtime()-start;
+    printf("time %e\n",runTime);
     MPI_Finalize();
     return (0);
 }
