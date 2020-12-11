@@ -416,7 +416,7 @@ int main(int argc, char* argv[])
             {
                 cleave = 0;
                 walkers[substrate] -= 1; //distToSubstrate
-                printf("move right walkers[substrate] %d",walkers[substrate]);
+                printf("\nmove right walkers[substrate] %d",walkers[substrate]);
                 if (walkers[substrate] == 0 && !absorb) // stepped onto substrate
                 {
                     numWalkersOnSubstrate += 1;
