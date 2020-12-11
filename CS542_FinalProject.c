@@ -128,12 +128,12 @@ int main(int argc, char* argv[])
                 requestMode=1;
             else if (time > requestTime)
                 int i=moveCtr;
-                while(reqBuf[1+3*i]>requestTime)
+                while(outgoingReqBuf[1+3*i]>requestTime)
                     i--;
                 if (rank==0)
-                    accessGranted=(reqBuf[1+(3*i)+1]>0);
+                    accessGranted=(outgoingReqBuf[1+(3*i)+1]>0);
                 else
-                    accessGranted=(reqBuf[1+(3*1)+2]>0);
+                    accessGranted=(outgoingReqBuf[1+(3*1)+2]>0);
                 MPI_ISend(accessGranted,1,MPI_INT,neighborRank,2,MPI_COMM_WORLD,send_request); //tag 2 = accessGranted
             else
                 assert (0);
@@ -299,7 +299,7 @@ int main(int argc, char* argv[])
             }
             else
             {
-                MPI_Send(reqBuf,reqBufSize,MPI_DOUBLE,(rank-1),0,MPI_COMM_WORLD);
+                MPI_Send(outgoingReqBuf,reqBufSize,MPI_DOUBLE,(rank-1),0,MPI_COMM_WORLD);
                 MPI_Recv(accessGranted,1,MPI_INT,(rank-1),2,MPI_COMM_WORLD);
                 distToLeft=accessGranted;
             }
@@ -319,7 +319,7 @@ int main(int argc, char* argv[])
             }
             else
             {
-                MPI_Send(reqBuf,reqBufSize,MPI_DOUBLE,(rank+1),0,MPI_COMM_WORLD);
+                MPI_Send(outgoingReqBuf,reqBufSize,MPI_DOUBLE,(rank+1),0,MPI_COMM_WORLD);
                 MPI_Recv(accessGranted,1,MPI_INT,(rank+1),2,MPI_COMM_WORLD);         // WAIT HERE ??********************************************
                 distToRight=accessGranted;
             }
@@ -477,10 +477,10 @@ int main(int argc, char* argv[])
                 }
                 else
                 {
-                    reqBuf[0] = (double) moveCtr;
-                    reqBuf[1+3*moveCtr]=time;
-                    reqBuf[1+3*moveCtr+1]=(double) walkers[leftmost];
-                    reqBuf[1+3*moveCtr+2]=(double) distToEnd;
+                    outgoingReqBuf[0] = (double) moveCtr;
+                    outgoingReqBuf[1+3*moveCtr]=time;
+                    outgoingReqBuf[1+3*moveCtr+1]=(double) walkers[leftmost];
+                    outgoingReqBuf[1+3*moveCtr+2]=(double) distToEnd;
                     //---update history---//
                     moveBuf[1+4*moveCtr] = time;
                     moveBuf[1+4*moveCtr+1] = (double) walker;
