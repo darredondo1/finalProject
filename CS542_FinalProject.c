@@ -224,7 +224,7 @@ int main(int argc, char* argv[])
             nu+=2;
         }
         
-        assert (0 <= nu && nu < numWalkers);
+        assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
         walker = 2*nu;
         substrate = walker+1;
         leftmost = 2*(numWalkers-1);
