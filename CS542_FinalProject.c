@@ -126,7 +126,7 @@ int main(int argc, char* argv[])
             requestTime = incomingReqBuf[1+(3*lastMove)];
             if (time < requestTime)
                 requestMode=1;
-            else if (time > requestTime)
+            else if (time => requestTime)
                 int i=moveCtr;
                 while(outgoingReqBuf[1+3*i]>requestTime)
                     i--;
@@ -135,8 +135,6 @@ int main(int argc, char* argv[])
                 else
                     accessGranted=(outgoingReqBuf[1+(3*1)+2]>0);
                 MPI_Isend(accessGranted,1,MPI_INT,neighborRank,2,MPI_COMM_WORLD,send_request); //tag 2 = accessGranted
-            else
-                assert (0);
         }
         
         if (requestMode)
