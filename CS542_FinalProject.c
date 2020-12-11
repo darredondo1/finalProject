@@ -314,7 +314,7 @@ int main(int argc, char* argv[])
             else
             {
                 MPI_Send(&outgoingReqBuf,reqBufSize,MPI_DOUBLE,(rank-1),0,MPI_COMM_WORLD);
-                MPI_Recv(&accessGranted,1,MPI_INT,(rank-1),2,MPI_COMM_WORLD);
+                MPI_Recv(&accessGranted,1,MPI_INT,(rank-1),2,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
                 distToLeft=accessGranted;
             }
         }
@@ -334,7 +334,7 @@ int main(int argc, char* argv[])
             else
             {
                 MPI_Send(&outgoingReqBuf,reqBufSize,MPI_DOUBLE,(rank+1),0,MPI_COMM_WORLD);
-                MPI_Recv(&accessGranted,1,MPI_INT,(rank+1),2,MPI_COMM_WORLD);         // WAIT HERE ??********************************************
+                MPI_Recv(&accessGranted,1,MPI_INT,(rank+1),2,MPI_COMM_WORLD,MPI_STATUS_IGNORE);         // WAIT HERE ??********************************************
                 distToRight=accessGranted;
             }
         }
@@ -488,7 +488,7 @@ int main(int argc, char* argv[])
                 if (moveCtr > moveBufCnt)
                 {
                     MPI_Isend(&time,1,MPI_DOUBLE,neighborRank,3,MPI_COMM_WORLD,&send_request);
-                    MPI_Recv(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD);
+                    MPI_Recv(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
                     moveCtr=0;
                 }
                 else
