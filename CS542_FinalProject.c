@@ -247,7 +247,7 @@ int main(int argc, char* argv[])
         if (numWalkers>0)
         {
             printf("\nr %e",r);
-            printf("numWalkersOnSubstrate %d",numWalkersOnSubstrate);
+            printf("\nnumWalkersOnSubstrate %d",numWalkersOnSubstrate);
             printf("\nrand %e",u);
             printf("\ntotalRate %e",totalRate);
             printf("\nsigma %e",sigma);
