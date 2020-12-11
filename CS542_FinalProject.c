@@ -118,32 +118,47 @@ int main(int argc, char* argv[])
         
         if (clearMemoryRequest)
             MPI_Recv(&clearMemoryTime,1,MPI_DOUBLE,neighborRank,3,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-            if (time < clearMemoryTime)
-            {
-                moveCtr=0;
-                clearMemoryMode=1;
-            }
-            else
-                clearMemoryGranted=1;
+            if (!numWalkers)
                 MPI_Isend(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,&send_request); //tag 4 = clearMemoryGranted
+            else
+            {
+                if (time < clearMemoryTime)
+                {
+                    moveCtr=0;
+                    clearMemoryMode=1;
+                }
+                else
+                {
+                    clearMemoryGranted=1;
+                    MPI_Isend(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,&send_request); //tag 4 = clearMemoryGranted
+                }
+            }
 
         if (incomingRequest)
         {
             MPI_Recv(&incomingReqBuf,reqBufSize,MPI_DOUBLE,neighborRank,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-            lastMove = (int)incomingReqBuf[0];
-            requestTime = incomingReqBuf[1+(3*lastMove)];
-            if (time < requestTime)
-                requestMode=1;
-            else if (time >= requestTime)
+            if (!numWalkers)
             {
-                int i=moveCtr;
-                while(outgoingReqBuf[1+3*i]>requestTime)
-                    i--;
-                if (rank==0)
-                    accessGranted=(outgoingReqBuf[1+(3*i)+1]>0);
-                else
-                    accessGranted=(outgoingReqBuf[1+(3*1)+2]>0);
+                accessGranted=1;
                 MPI_Isend(&accessGranted,1,MPI_INT,neighborRank,2,MPI_COMM_WORLD,&send_request); //tag 2 = accessGranted
+            }
+            else
+            {
+                lastMove = (int)incomingReqBuf[0];
+                requestTime = incomingReqBuf[1+(3*lastMove)];
+                if (time < requestTime)
+                    requestMode=1;
+                else if (time >= requestTime)
+                {
+                    int i=moveCtr;
+                    while(outgoingReqBuf[1+3*i]>requestTime)
+                        i--;
+                    if (rank==0)
+                        accessGranted=(outgoingReqBuf[1+(3*i)+1]>0);
+                    else
+                        accessGranted=(outgoingReqBuf[1+(3*1)+2]>0);
+                    MPI_Isend(&accessGranted,1,MPI_INT,neighborRank,2,MPI_COMM_WORLD,&send_request); //tag 2 = accessGranted
+                }
             }
         }
         
@@ -167,15 +182,18 @@ int main(int argc, char* argv[])
             MPI_Recv(&sendWalker,1,MPI_DOUBLE,neighborRank,1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
             time = sendWalker[0];
             int i=moveCtr;
-            while(moveBuf[1+4*i]>time)
+            if (numWalkers>0)
             {
-                rewindWalker=moveBuf[1+(4*i)+1];
-                rewindMove=moveBuf[1+(4*i)+2];
-                rewindCleave=moveBuf[1+(4*i)+3];
-                walkers[rewindWalker] -= rewindMove;
-                walkers[rewindWalker+1] += rewindMove;
-                walkers[rewindWalker+1] += rewindCleave;
-                i--;
+                while(moveBuf[1+4*i]>time)
+                {
+                    rewindWalker=moveBuf[1+(4*i)+1];
+                    rewindMove=moveBuf[1+(4*i)+2];
+                    rewindCleave=moveBuf[1+(4*i)+3];
+                    walkers[rewindWalker] -= rewindMove;
+                    walkers[rewindWalker+1] += rewindMove;
+                    walkers[rewindWalker+1] += rewindCleave;
+                    i--;
+                }
             }
             numWalkers+=1;
             if (rank==0)
@@ -226,7 +244,8 @@ int main(int argc, char* argv[])
             nu+=2;
         }
         
-        assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
+        if (numWalkers)
+            assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
         walker = 2*nu;
         substrate = walker+1;
         leftmost = 2*(numWalkers-1);
