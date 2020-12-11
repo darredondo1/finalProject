@@ -244,18 +244,6 @@ int main(int argc, char* argv[])
             nu+=2;
         }
         
-        if (numWalkers>0)
-        {
-            printf("\nr %e",r);
-            printf("\nnumWalkersOnSubstrate %d",numWalkersOnSubstrate);
-            printf("\nrand %e",u);
-            printf("\ntotalRate %e",totalRate);
-            printf("\nsigma %e",sigma);
-            printf("\nnu %d",(int)((nu-1)/2));
-            printf("\nproc %d",rank);
-            printf("\nnumWalkers %d\n",numWalkers);
-            assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
-        }
         walker = nu-1;
         substrate = walker+1;
         leftmost = 2*(numWalkers-1);
