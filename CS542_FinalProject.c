@@ -28,11 +28,11 @@ int main(int argc, char* argv[])
 //    int blockSize = (int) (numDoubles / num_procs);
     
     //walker idx is 2*walker, organized right to left (new walkers are at end of list)
-    int* walkers = (int*)calloc(2*trackSize*sizeof(int)); //distToLeft, distToSub
-    double* moveBuf = (double*)calloc(moveBufSize*sizeof(double)); //time, walker, move, cleave
-    double* outgoingReqBuf = (double*)calloc(reqBufSize*sizeof(double));
-    double* incomingReqBuf = (double*)calloc(reqBufSize*sizeof(double));
-    double* sendWalker = (double*)calloc(2*sizeof(double)); // send walker buffer
+    int* walkers = (int*)calloc(2*trackSize,sizeof(int)); //distToLeft, distToSub
+    double* moveBuf = (double*)calloc(moveBufSize,sizeof(double)); //time, walker, move, cleave
+    double* outgoingReqBuf = (double*)calloc(reqBufSize,sizeof(double));
+    double* incomingReqBuf = (double*)calloc(reqBufSize,sizeof(double));
+    double* sendWalker = (double*)calloc(2,sizeof(double)); // send walker buffer
     
     int numWalkers = 0, numWalkersOnSubstrate = 0, numWalkersOnProduct = 0;
     if (rank==0)
