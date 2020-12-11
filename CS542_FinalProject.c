@@ -448,12 +448,12 @@ int main(int argc, char* argv[])
             if (!onSubstrate)
             {
                 cleave = 0;
-                walkers[substrate] -= 1; //distToSubstrate
+                walkers[substrate] += 1; //distToSubstrate
             }
             else
             {
                 cleave = 1;
-                walkers[substrate] -= 2*move;
+                walkers[substrate] += 2*move;
             }
             if (requestLeft) send=1;
         }
