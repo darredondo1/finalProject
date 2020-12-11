@@ -253,7 +253,7 @@ int main(int argc, char* argv[])
             distToRight = distToEnd;
         else
         {
-            rightNeighbor = 2*(nu-1);
+            rightNeighbor = walker-2;
             distToRight = walkers[rightNeighbor];
         }
         distToLeft = walkers[walker];
