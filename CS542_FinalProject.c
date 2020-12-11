@@ -18,6 +18,7 @@ int main(int argc, char* argv[])
     int maxTime = atoi(argv[1]);
     int trackSize = atoi(argv[2]);
     int moveBufCnt = atoi(argv[3]);
+    double r = atoi(argv[4]);
     int moveBufSize = (4*moveBufCnt);
     int reqBufSize = (1+3*moveBufCnt);
     
@@ -46,6 +47,8 @@ int main(int argc, char* argv[])
     double sigma = 0.0;
     double moveRand = 0.0;// for moving walker
     double time = 0;
+    double rho=0;
+    int substrate=0;
     int walker = 0; //moving walker
     int onSubstrate = 1; //bool - for moving walker
     int cleave = 1; //bool - for moving walker
@@ -199,7 +202,7 @@ int main(int argc, char* argv[])
         assert (moveCtr <= moveBufCnt);
         double totalRateForSubstrates = r * (double) numWalkersOnSubstrate;
         double totalRateForProducts = (double) numWalkersOnProduct;
-        totalRate = totalRateForProducts + totalRateForSubstrates;
+        double totalRate = totalRateForProducts + totalRateForSubstrates;
     
         double u = uniform01();
         assert (0.0 <= u && u < 1.0);
