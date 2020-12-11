@@ -256,7 +256,7 @@ int main(int argc, char* argv[])
             printf("\nnumWalkers %d\n",numWalkers);
             assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
         }
-        walker = 2*nu;
+        walker = nu-1;
         substrate = walker+1;
         leftmost = 2*(numWalkers-1);
         
