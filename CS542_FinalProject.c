@@ -226,7 +226,7 @@ int main(int argc, char* argv[])
         double totalRateForProducts = (double) numWalkersOnProduct;
         double totalRate = totalRateForProducts + totalRateForSubstrates;
     
-        double u = rand()/RAND_MAX;
+        double u = (double)rand()/(double)RAND_MAX;
         assert (0.0 <= u && u < 1.0);
         rho = totalRate * u;
         
