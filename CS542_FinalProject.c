@@ -9,6 +9,11 @@
 #include <unistd.h>
 #include <assert.h>
 
+inline double uniform01 ()
+{
+  return (mts_drand (r_state));
+}
+
 int main(int argc, char* argv[])
 {
     MPI_Init(&argc, &argv);
