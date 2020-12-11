@@ -5,18 +5,9 @@
 #include <math.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "mtwist-1.1/mtwist.h"
-#include <sys/timeb.h>
 #include <unistd.h>
 #include <assert.h>
 
-//Mersenne twister:
-mt_state* r_state;
-
-inline double uniform01 ()
-{
-  return (mts_drand (r_state));
-}
 
 int main(int argc, char* argv[])
 {
@@ -215,7 +206,7 @@ int main(int argc, char* argv[])
         double totalRateForProducts = (double) numWalkersOnProduct;
         double totalRate = totalRateForProducts + totalRateForSubstrates;
     
-        double u = uniform01();
+        double u = random();
         assert (0.0 <= u && u < 1.0);
         rho = totalRate * u;
         
