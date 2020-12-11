@@ -9,6 +9,9 @@
 #include <unistd.h>
 #include <assert.h>
 
+//Mersenne twister:
+mt_state* r_state;
+
 inline double uniform01 ()
 {
   return (mts_drand (r_state));
