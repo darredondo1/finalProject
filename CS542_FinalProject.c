@@ -476,7 +476,7 @@ int main(int argc, char* argv[])
                 requestMode=0;
             }
             clearMemoryGranted=1;
-            MPI_Isend(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD);//send clearMemoryGranted in case neighbor has requested
+            MPI_Isend(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,&send_request);//send clearMemoryGranted in case neighbor has requested
             MPI_Isend(&sendWalker,1,MPI_DOUBLE,neighborRank,1,MPI_COMM_WORLD,&send_request);
         }
 
