@@ -246,9 +246,9 @@ int main(int argc, char* argv[])
         
         if (numWalkers>0)
         {
-            printf("nu %d",(int)((nu-1)/2));
-            printf("proc %d",rank);
-            printf("numWaslkers %d",numWalkers);
+            printf("\nnu %d",(int)((nu-1)/2));
+            printf("\nproc %d",rank);
+            printf("\nnumWaslkers %d",numWalkers);
             assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
         }
         walker = 2*nu;
