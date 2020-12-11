@@ -5,7 +5,8 @@
 #include <math.h>
 #include <fcntl.h>
 #include <unistd.h>
-
+#include "mtwist-1.1/mtwist.h"
+#include <unistd.h>
 
 int main(int argc, char* argv[])
 {
