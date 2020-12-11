@@ -432,7 +432,7 @@ int main(int argc, char* argv[])
             if (walker > 0) // right neigbor exists
                 walkers[rightNeighbor] -= move;
             else //walker is rightmost
-                distToEnd -=move
+                distToEnd -=move;
             if (!onSubstrate)
             {
                 cleave = 0;
@@ -469,10 +469,10 @@ int main(int argc, char* argv[])
         {
             sendWalker[0]=time;
             sendWalker[1]=walkers[substrate];
-            if requestMode:
+            if (requestMode)
             {
                 accessGranted=0;
-                MPI_Isend(&accessGranted,1,MPI_INT,neighborRank,2,MPI_COMM_WORLD);//send accessDenied since neighbor is waiting for availability
+                MPI_Isend(&accessGranted,1,MPI_INT,neighborRank,2,MPI_COMM_WORLD,&send_request);//send accessDenied since neighbor is waiting for availability
                 requestMode=0;
             }
             clearMemoryGranted=1;
