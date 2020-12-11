@@ -51,8 +51,8 @@ int main(int argc, char* argv[])
     double rho=0;
     int substrate=0;
     int walker = 0; //moving walker
-    int onSubstrate = 1; //bool - for moving walker
-    int cleave = 1; //bool - for moving walker
+    int onSubstrate = 0; //bool - for moving walker
+    int cleave = 0; //bool - for moving walker
     int rightNeighbor = 0; //for moving walker
     int moveCtr = 0; //moves stored in buffer
     int move = 0; //-1 left, 0 self, 1 right
@@ -246,12 +246,14 @@ int main(int argc, char* argv[])
         
         if (numWalkers>0)
         {
+            printf("\nr %e",r);
+            printf("numWalkersOnSubstrate %d",numWalkersOnSubstrate);
             printf("\nrand %e",u);
             printf("\ntotalRate %e",totalRate);
             printf("\nsigma %e",sigma);
             printf("\nnu %d",(int)((nu-1)/2));
             printf("\nproc %d",rank);
-            printf("\nnumWalkers %d",numWalkers);
+            printf("\nnumWalkers %d\n",numWalkers);
             assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
         }
         walker = 2*nu;
