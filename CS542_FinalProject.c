@@ -212,7 +212,7 @@ int main(int argc, char* argv[])
         
         time += 1.0 / totalRate;
 
-        nu = 0;
+        nu = 1;
         sigma = 0.0;
         while (nu < numWalkers)
         {
@@ -221,7 +221,7 @@ int main(int argc, char* argv[])
             else
                 sigma += 1.0;
             if (sigma > rho) break;
-            nu++;
+            nu+=2;
         }
         
         assert (0 <= nu && nu < numWalkers);
