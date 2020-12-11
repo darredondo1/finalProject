@@ -514,14 +514,3 @@ int main(int argc, char* argv[])
     MPI_Finalize();
     return (0);
 }
- 
-    
-//    if (rank==0)
-//    {
-//        printf("rank %d sum %e\n",rank,sum);
-//        //Save result
-//        fPtr = fopen(fPath ,"a");
-//        if (fPtr == NULL) exit(EXIT_FAILURE);
-//        fprintf(fPtr,"%e\n",time);
-//        fclose(fPtr);
-//    }

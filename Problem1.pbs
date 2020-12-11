@@ -1,0 +1,48 @@
+#!/bin/bash
+
+## Which que to run from <default> or <debug>
+#PBS -q default
+
+## Specify bash as terminal
+#PBS -S /bin/bash
+
+## number of nodes, <p>rocessor <p>er <n>ode <each node as 8 processors>
+#PBS -lnodes=2:ppn=8
+
+## How much time you want to give your job to finish 48 hours max
+#PBS -lwalltime=00:10:00
+
+## Where to place the run info <whatever_name_you_want>
+#PBS -N darredondo_CS542_p2
+
+## Log the <o>utput and <e>rrors to file
+#PBS -j oe
+
+## Email me for <b>eginning <a>bort <e>nd
+#PBS -m bae
+
+## What email to send to
+#PBS -M darredondo@unm.edu
+
+## Execute .bashrc
+source /users/dandreas/.bashrc
+
+## Load up miniconda
+module load mpich-3.2-gcc-4.8.5-vupdix4 
+
+## This is the path to where the script was called from
+cd $PBS_O_WORKDIR
+
+mpirun -np 16 ./binomial 0 100
+mpirun -np 16 ./binomial 1 100
+mpirun -np 16 ./binomial 2 100
+mpirun -np 16 ./binomial 3 100
+mpirun -np 16 ./binomial 4 100
+
+
+
+
+
+
+
+
