@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
     
     int maxTime = atoi(argv[1]);
     int trackSize = atoi(argv[2]);
-    int moveBufCnt = atoi(arvg[3]);
+    int moveBufCnt = atoi(argv[3]);
     int moveBufSize = (4*moveBufCnt);
     int reqBufSize = (1+3*moveBufCnt);
     
