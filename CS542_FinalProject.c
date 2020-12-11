@@ -509,7 +509,7 @@ int main(int argc, char* argv[])
                 if (time > clearMemoryTime)
                 {
                     clearMemoryGranted=1;
-                    MPI_Isend(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted)
+                    MPI_Isend(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,&send_request); //tag 4 = clearMemoryGranted)
                     clearMemoryMode=0;
                 }
             }
