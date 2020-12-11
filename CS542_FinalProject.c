@@ -127,6 +127,7 @@ int main(int argc, char* argv[])
             if (time < requestTime)
                 requestMode=1;
             else if (time => requestTime)
+            {
                 int i=moveCtr;
                 while(outgoingReqBuf[1+3*i]>requestTime)
                     i--;
@@ -135,6 +136,7 @@ int main(int argc, char* argv[])
                 else
                     accessGranted=(outgoingReqBuf[1+(3*1)+2]>0);
                 MPI_Isend(accessGranted,1,MPI_INT,neighborRank,2,MPI_COMM_WORLD,send_request); //tag 2 = accessGranted
+            }
         }
         
         if (requestMode)
@@ -159,9 +161,9 @@ int main(int argc, char* argv[])
             int i=moveCtr;
             while(moveBuf[1+4*i]>time)
             {
-                rewindWalker=moveBuf[1+(4*i)+1]
-                rewindMove=moveBuf[1+(4*i)+2]
-                rewindCleave=moveBuf[1+(4*i)+3]
+                rewindWalker=moveBuf[1+(4*i)+1];
+                rewindMove=moveBuf[1+(4*i)+2];
+                rewindCleave=moveBuf[1+(4*i)+3];
                 walkers[rewindWalker] -= rewindMove;
                 walkers[rewindWalker+1] += rewindMove;
                 walkers[rewindWalker+1] += rewindCleave;
