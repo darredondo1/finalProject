@@ -122,7 +122,8 @@ int main(int argc, char* argv[])
                 clearMemoryMode=1;
             }
             else
-                MPI_Send(1,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted
+                clearMemoryGranted=1;
+                MPI_Send(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted
 
         if (incomingRequest)
         {
@@ -305,7 +306,7 @@ int main(int argc, char* argv[])
             else
             {
                 MPI_Send(outgoingReqBuf,reqBufSize,MPI_DOUBLE,(rank-1),0,MPI_COMM_WORLD);
-                MPI_Recv(accessGranted,1,MPI_INT,(rank-1),2,MPI_COMM_WORLD);
+                MPI_Recv(&accessGranted,1,MPI_INT,(rank-1),2,MPI_COMM_WORLD);
                 distToLeft=accessGranted;
             }
         }
@@ -325,7 +326,7 @@ int main(int argc, char* argv[])
             else
             {
                 MPI_Send(outgoingReqBuf,reqBufSize,MPI_DOUBLE,(rank+1),0,MPI_COMM_WORLD);
-                MPI_Recv(accessGranted,1,MPI_INT,(rank+1),2,MPI_COMM_WORLD);         // WAIT HERE ??********************************************
+                MPI_Recv(&accessGranted,1,MPI_INT,(rank+1),2,MPI_COMM_WORLD);         // WAIT HERE ??********************************************
                 distToRight=accessGranted;
             }
         }
@@ -497,7 +498,8 @@ int main(int argc, char* argv[])
             {
                 if (time > clearMemoryTime)
                 {
-                    MPI_Send(1,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted)
+                    clearMemoryGranted=1;
+                    MPI_Send(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted)
                     clearMemoryMode=0;
                 }
             }
