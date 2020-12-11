@@ -420,7 +420,7 @@ int main(int argc, char* argv[])
                 numWalkers += 1;
                 numWalkersOnSubstrate += 1;
                 walkers[2*numWalkers] = 0;
-                walker[2*numWalkers+1] = 0;
+                walkers[2*numWalkers+1] = 0;
             }
             if (requestRight) send=1;
         }
