@@ -130,7 +130,7 @@ int main(int argc, char* argv[])
             requestTime = incomingReqBuf[1+(3*lastMove)];
             if (time < requestTime)
                 requestMode=1;
-            else if (time => requestTime)
+            else if (time >= requestTime)
             {
                 int i=moveCtr;
                 while(outgoingReqBuf[1+3*i]>requestTime)
