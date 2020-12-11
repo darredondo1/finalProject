@@ -216,7 +216,7 @@ int main(int argc, char* argv[])
 
         nu = 1;
         sigma = 0.0;
-        while (nu < numWalkers)
+        while (nu < numWalkers*2)
         {
             if (walkers [nu] == 0)
                 sigma += r;
