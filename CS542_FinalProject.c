@@ -244,8 +244,13 @@ int main(int argc, char* argv[])
             nu+=2;
         }
         
-        if (numWalkers)
+        if (numWalkers>0)
+        {
+            printf("nu %d",nu);
+            printf("proc %d",rank);
+            printf("numWaslkers %d",numWalkers);
             assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
+        }
         walker = 2*nu;
         substrate = walker+1;
         leftmost = 2*(numWalkers-1);
