@@ -20,12 +20,12 @@ int main(int argc, char* argv[])
     int moveBufSize = (4*moveBufCnt);
     int reqBufSize = (1+3*moveBufCnt);
     
-    //make file
-    FILE * fPtr;
-    char fPath[100];
-    sprintf(fPath,"Problem3/ScatterAllGather/nprocs_%d/ScatterAllGather_N_%d.txt",num_procs,N);
-    int numDoubles = 1 << N;
-    int blockSize = (int) (numDoubles / num_procs);
+//    //make file
+//    FILE * fPtr;
+//    char fPath[100];
+//    sprintf(fPath,"Problem3/ScatterAllGather/nprocs_%d/ScatterAllGather_N_%d.txt",num_procs,N);
+//    int numDoubles = 1 << N;
+//    int blockSize = (int) (numDoubles / num_procs);
     
     //walker idx is 2*walker, organized right to left (new walkers are at end of list)
     int* walkers = (int*)calloc(2*trackSize*sizeof(int)); //distToLeft, distToSub
