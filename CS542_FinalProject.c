@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include "mtwist-1.1/mtwist.h"
 #include <unistd.h>
+#include <assert.h>
 
 int main(int argc, char* argv[])
 {
@@ -185,7 +186,7 @@ int main(int argc, char* argv[])
         {
             walkers[0] = walkers[1]-1; // new distToLeft is last rightmost distToSubstrate - 1
             walkers[1] = sendWalker[1]; // new distToSubstrate
-            for (i=0;i<(numWalkers-1);i++) // shift all walker indexes to the right (since walker 0 is rightmost)
+            for (int i=0;i<(numWalkers-1);i++) // shift all walker indexes to the right (since walker 0 is rightmost)
             {
                 walkers[i+2]=walkers[i];
                 walkers[i+3]=walkers[i+1];
