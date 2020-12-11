@@ -246,9 +246,12 @@ int main(int argc, char* argv[])
         
         if (numWalkers>0)
         {
+            printf("\nrand %e",u);
+            printf("\ntotalRate %e",totalRate);
+            printf("\nsigma %e",sigma);
             printf("\nnu %d",(int)((nu-1)/2));
             printf("\nproc %d",rank);
-            printf("\nnumWaslkers %d",numWalkers);
+            printf("\nnumWalkers %d",numWalkers);
             assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
         }
         walker = 2*nu;
