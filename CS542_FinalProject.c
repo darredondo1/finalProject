@@ -206,7 +206,7 @@ int main(int argc, char* argv[])
         double totalRateForProducts = (double) numWalkersOnProduct;
         double totalRate = totalRateForProducts + totalRateForSubstrates;
     
-        double u = rand();
+        double u = rand()/RAND_MAX;
         assert (0.0 <= u && u < 1.0);
         rho = totalRate * u;
         
@@ -345,7 +345,7 @@ int main(int argc, char* argv[])
         
         if (moveSelfOrLeft)
         {
-            moveRand = rand();
+            moveRand = rand()/RAND_MAX;
             if (moveRand < .5)
                 moveSelf=1;
             else
@@ -354,7 +354,7 @@ int main(int argc, char* argv[])
         
         if (moveSelfOrRight)
         {
-            moveRand = rand();
+            moveRand = rand()/RAND_MAX;
             if (moveRand < .5)
                 moveSelf=1;
             else
@@ -363,7 +363,7 @@ int main(int argc, char* argv[])
         
         if (moveSelfOrLeftOrRight)
         {
-            moveRand = rand();
+            moveRand = rand()/RAND_MAX;
             if (moveRand < 1.0/3.0)
                 moveLeft=1;
             else if (moveRand < 2.0/3.0)
