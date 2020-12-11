@@ -495,7 +495,7 @@ int main(int argc, char* argv[])
             }
             else
             {
-                if time > clearMemoryTime
+                if (time > clearMemoryTime)
                 {
                     MPI_Send(1,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,send_request); //tag 4 = clearMemoryGranted)
                     clearMemoryMode=0;
