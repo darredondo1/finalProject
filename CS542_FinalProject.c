@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
     MPI_Barrier(MPI_COMM_WORLD);
     start = MPI_Wtime();
     
-    while (time <= maxTime):
+    while (time <= maxTime)
     {
         incomingRequest = 0;
         incomingWalker = 0;
