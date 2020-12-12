@@ -10,7 +10,7 @@
 #PBS -lnodes=1:ppn=2
 
 ## How much time you want to give your job to finish 48 hours max
-#PBS -lwalltime=00:10:00
+#PBS -lwalltime=00:01:00
 
 ## Where to place the run info <whatever_name_you_want>
 #PBS -N darredondo_CS542
