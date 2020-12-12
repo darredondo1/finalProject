@@ -453,6 +453,7 @@ int main(int argc, char* argv[])
             else
             {
                 cleave = 1;
+                numWalkersOnSubstrate -= 1;
                 walkers[substrate] += 2*move;
             }
             if (requestLeft) send=1;
