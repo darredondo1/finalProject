@@ -102,6 +102,7 @@ int main(int argc, char* argv[])
         clearMemoryRequest=0;
         clearMemoryGranted=0;
         accessGranted=0;
+        message=0;
         
         MPI_Status status;
         MPI_Iprobe(MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&message,&status);
