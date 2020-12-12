@@ -33,7 +33,7 @@ module load mpich-3.2-gcc-4.8.5-vupdix4
 ## This is the path to where the script was called from
 cd $PBS_O_WORKDIR
 
-mpirun -np 1 ./CS542_FinalProject 1000 1000 1000 0.7
+mpirun -np 1 ./CS542_FinalProject 100 100 100 0.7
 
 
 
