@@ -527,18 +527,18 @@ int main(int argc, char* argv[])
                 }
             }
         }
-        if (numWalkers>0)
-        {
-            printf("\nnumWalkersOnSubstrate %d",numWalkersOnSubstrate);
-            printf("\nrand %e",u);
-            printf("\ntotalRate %e",totalRate);
-            printf("\nsigma %e",sigma);
-            printf("\nwalker %d",(int)((nu-1)/2));
-            printf("\nmove %d",move);
-            printf("\nproc %d",rank);
-            printf("\nnumWalkers %d\n",numWalkers);
-            assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
-        }
+//        if (numWalkers>0)
+//        {
+//            printf("\nnumWalkersOnSubstrate %d",numWalkersOnSubstrate);
+//            printf("\nrand %e",u);
+//            printf("\ntotalRate %e",totalRate);
+//            printf("\nsigma %e",sigma);
+//            printf("\nwalker %d",(int)((nu-1)/2));
+//            printf("\nmove %d",move);
+//            printf("\nproc %d",rank);
+//            printf("\nnumWalkers %d\n",numWalkers);
+//            assert (0 <= nu && ((int)((nu-1)/2)) < numWalkers);
+//        }
     }
     runTime = MPI_Wtime()-start;
     printf("time %e\n",runTime);
