@@ -179,6 +179,7 @@ int main(int argc, char* argv[])
         insertRight=0;
         if (incomingWalker)
         {
+            MPI_Recv(&clearMemoryGranted,1,MPI_INT,neighborRank,4,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
             MPI_Recv(&sendWalker,1,MPI_DOUBLE,neighborRank,1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
             time = sendWalker[0];
             int i=moveCtr;
