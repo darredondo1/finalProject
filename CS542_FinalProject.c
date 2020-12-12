@@ -345,7 +345,7 @@ int main(int argc, char* argv[])
             else
             {
                 MPI_Send(&outgoingReqBuf,reqBufSize,MPI_DOUBLE,(rank+1),0,MPI_COMM_WORLD);
-                MPI_Recv(&accessGranted,1,MPI_INT,(rank+1),2,MPI_COMM_WORLD,MPI_STATUS_IGNORE);         // WAIT HERE ??********************************************
+                MPI_Recv(&accessGranted,1,MPI_INT,(rank+1),2,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
                 distToRight=accessGranted;
             }
         }
