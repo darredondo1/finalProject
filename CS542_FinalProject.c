@@ -84,7 +84,6 @@ int main(int argc, char* argv[])
     int accessGranted=0;
     double simulationTimeBacktracked=0;
     int clearMemoryMode=0;
-    MPI_Request send_request;
     int trySaveMove=0;
     double clearMemoryTime;
     int clearMemoryGranted;
